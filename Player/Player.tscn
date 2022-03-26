@@ -11,10 +11,20 @@
 [ext_resource path="res://Player/Player.gd" type="Script" id=9]
 [ext_resource path="res://StateMachine/WallJump.gd" type="Script" id=10]
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 32, 70 )
+region = Rect2( 224, 0, 32, 70 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 32, 70 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -46,20 +56,15 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 192, 0, 32, 70 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 224, 0, 32, 70 )
+region = Rect2( 256, 70, 32, 70 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 32, 70 )
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 32, 70 )
+region = Rect2( 0, 0, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
@@ -76,16 +81,11 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 288, 70, 32, 70 )
 
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 256, 70, 32, 70 )
-
 [sub_resource type="SpriteFrames" id=15]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
-"loop": true,
-"name": "Idle",
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": false,
+"name": "Jumping",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
@@ -93,9 +93,14 @@ animations = [ {
 "name": "Moving",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": false,
-"name": "Jumping",
+"frames": [ SubResource( 14 ) ],
+"loop": true,
+"name": "WallJump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "Idle",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -106,11 +111,6 @@ animations = [ {
 "frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": false,
 "name": "Falling",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 14 ) ],
-"loop": true,
-"name": "WallJump",
 "speed": 5.0
 } ]
 
@@ -235,5 +235,6 @@ emitting = false
 explosiveness = 0.25
 randomness = 0.85
 process_material = SubResource( 21 )
+
 [connection signal="timeout" from="StateMachine/Coyote/Timer" to="StateMachine/Coyote" method="_on_Timer_timeout"]
 [connection signal="timeout" from="StateMachine/WallJump/Timer" to="StateMachine/WallJump" method="_on_Timer_timeout"]
